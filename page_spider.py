@@ -21,6 +21,7 @@ def main(database: str, url_list_file: str):
     database_utilities.create_database(database_path=path)
     database_utilities.save_words_to_database(database_path=path, words_list=big_word_list)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-db", "--database", help="SQLite File Name")

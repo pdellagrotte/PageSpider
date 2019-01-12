@@ -3,6 +3,7 @@ import os
 
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__), 'words.db')
 
+
 def create_database(database_path=DEFAULT_PATH):
     conn = sqlite3.connect(database_path)
     with conn:
@@ -13,6 +14,7 @@ def create_database(database_path=DEFAULT_PATH):
         ddl = "CREATE UNIQUE INDEX words_word_uindex ON words (word)"
         cur.execute(ddl)
     conn.close()
+
 
 def save_words_to_database(words_list: list, database_path=DEFAULT_PATH):
     conn = sqlite3.connect(database_path)
@@ -36,7 +38,8 @@ def execute_query(sql: str, database_path=DEFAULT_PATH):
     with conn:
         cur = conn.cursor()
         cur.execute(sql)
+        return cur.fetchall()
+        # for row in all_rows:
+        #     # row[0] returns the first column in the query (name), row[1] returns email column.
+        #     print('{0} : {1}'.format(row[0], row[1]))
     conn.close()
-
-# conn = db_connect()
-# curs = conn.cursor()
